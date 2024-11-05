@@ -50,7 +50,7 @@ parser.add_argument('--log_transform', action="store_true")
 # Model
 parser.add_argument('--drop_path_rate', default=0.2, type=float)
 parser.add_argument('--depth', default=3, type=int)
-parser.add_argument('--embed_dim', default=64, type=int)
+parser.add_argument('--embed_dim', default=256, type=int)
 # Train Parameter
 parser.add_argument('--batch_size', default=200, type=int)
 parser.add_argument('--weight_decay', type=float, default=0.05)
