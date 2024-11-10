@@ -116,7 +116,7 @@ with torch.no_grad():
         if args.model == "CountMamba":
             inference_params = InferenceParams()
             window_feature = np.zeros(shape=(6, 2 * (args.maximum_cell_number + 1) + 2))
-            history_feature = torch.zeros((1, 1, 64)).float().to(device)
+            history_feature = torch.zeros((1, 1, args.embed_dim)).float().to(device)
             current_index = 0
             last_time = 0.0
         elif args.model == "RF":
