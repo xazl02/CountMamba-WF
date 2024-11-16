@@ -174,6 +174,10 @@ done
   cd defense/wtfpad
   python main.py --traces_path "../../dataset/CW"
   python main.py --traces_path "../../dataset/OW"
+
+  cd defense_npz/wtfpad
+  python main.py --traces_path "../../npz_dataset/Closed_2tab"
+  python main.py --traces_path "../../npz_dataset/Open_2tab"
   ```
 - FRONT: Add dummy packets with fixed length of 888. No latency.
   ``` shell
