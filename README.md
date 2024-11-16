@@ -1,4 +1,8 @@
-# CountMamba-WF
+# CountMamba
+
+This reposity is official implementation of:
+
+***CountMamba: A Generalized Website Fingerprinting Attack via Coarse-Grained Representation and Fine-Grained Prediction***
 
 ## 1. Denpendency
 ``` shell
@@ -74,8 +78,7 @@ python convert_merge_npz.py --input_file "/nvme/dxw/TMWF-main/dataset/tbb_multi_
 python convert_merge_npz.py --input_file "/nvme/dxw/TMWF-main/dataset/chrome_multi_tab/"
 ```
 
-### Todo
-Provide npz dataset
+**You can skip the above steps by directly download**
 
 ### 2.5 Dataset Split
 train.npz, valid.npz, test.npz
