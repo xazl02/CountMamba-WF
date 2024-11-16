@@ -78,7 +78,7 @@ python convert_merge_npz.py --input_file "/nvme/dxw/TMWF-main/dataset/tbb_multi_
 python convert_merge_npz.py --input_file "/nvme/dxw/TMWF-main/dataset/chrome_multi_tab/"
 ```
 
-**You can skip the above steps by directly download**
+**You can skip the above steps (from 2.1 to 2.4) by directly download**
 
 ### 2.5 Dataset Split
 train.npz, valid.npz, test.npz
