@@ -61,7 +61,6 @@ python MergeSingleTraces_openworld.py --input_dir "/nvme/dxw/TMWF-main/dataset/c
 ```
 
 ### 2.4 Convert to npz
-data.npz
 ```shell
 cd data_process
 python convert_to_npz.py --dataset CW
@@ -88,7 +87,6 @@ Provide npz dataset
 final_npz_dataset.zip
 
 ### 2.5 Dataset Split
-train.npz, valid.npz, test.npz
 ```shell
 cd data_process
 python dataset_split.py --dataset CW
