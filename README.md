@@ -89,22 +89,15 @@ final_npz_dataset.zip
 ### 2.5 Dataset Split
 ```shell
 cd data_process
-python dataset_split.py --dataset CW
-python dataset_split.py --dataset OW
-python dataset_split.py --dataset k-NN
-python dataset_split.py --dataset W_T
+for dataset in CW OW k-NN W_T
+do
+  python dataset_split.py --dataset ${dataset}
+done
 
-python dataset_split.py --dataset Closed_2tab --use_stratify False
-python dataset_split.py --dataset Closed_3tab --use_stratify False
-python dataset_split.py --dataset Closed_4tab --use_stratify False
-python dataset_split.py --dataset Closed_5tab --use_stratify False
-python dataset_split.py --dataset Open_2tab --use_stratify False
-python dataset_split.py --dataset Open_3tab --use_stratify False
-python dataset_split.py --dataset Open_4tab --use_stratify False
-python dataset_split.py --dataset Open_5tab --use_stratify False
-
-python dataset_split.py --dataset tbb_multi_tab --use_stratify False
-python dataset_split.py --dataset chrome_multi_tab --use_stratify False
+for dataset in Closed_2tab Closed_3tab Closed_4tab Closed_5tab Open_2tab Open_3tab Open_4tab Open_5tab tbb_multi_tab chrome_multi_tab
+do
+  python dataset_split.py --dataset ${dataset} --use_stratify False
+done
 ```
 
 ## 3. Website FingerPrinting
