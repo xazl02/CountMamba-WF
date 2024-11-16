@@ -173,16 +173,19 @@ done
   ``` shell
   cd defense/wtfpad
   python main.py --traces_path "../../dataset/CW"
+  python main.py --traces_path "../../dataset/OW"
   ```
 - FRONT: Add dummy packets with fixed length of 888. No latency.
   ``` shell
   cd defense/front
   python main.py --p "../../dataset/CW"
+  python main.py --p "../../dataset/OW"
   ```
 - Tamaraw: Send packets at constant rate with fixed size.
   ``` shell
   cd defense/tamaraw
   python tamaraw.py --traces_path "../../dataset/CW"
+  python tamaraw.py --traces_path "../../dataset/OW"
   ```
 - RegulaTor: transmit packets in a time-sensitive manner
   - When a download traffic 'surge' arrives, RegulaTor starts sending packets at a set initial rate.
@@ -191,25 +194,29 @@ done
   ``` shell
   cd defense/regulartor
   python regulator_sim.py --source_path "../../dataset/CW/" --output_path "../results/regulator_CW/"
+  python regulator_sim.py --source_path "../../dataset/OW/" --output_path "../results/regulator_OW/"
   ```
 - TrafficSilver: Split traffic.
   - Round Robin
     ``` shell
     cd defense/trafficsilver
     python simulator.py --p "../../dataset/CW/" --o "../results/trafficsilver_rb_CW/" --s round_robin
+    python simulator.py --p "../../dataset/OW/" --o "../results/trafficsilver_rb_OW/" --s round_robin
     ```
   - By Direction
     ``` shell
     cd defense/trafficsilver
     python simulator.py --p "../../dataset/CW/" --o "../results/trafficsilver_bd_CW/" --s in_and_out
+    python simulator.py --p "../../dataset/OW/" --o "../results/trafficsilver_bd_OW/" --s in_and_out
     ```
   - Batched Weighted Random
     ``` shell
     cd defense/trafficsilver
     python simulator.py --p "../../dataset/CW/" --o "../results/trafficsilver_bwr_CW/" --s batched_weighted_random -r 50,70 -a 1,1,1
+    python simulator.py --p "../../dataset/OW/" --o "../results/trafficsilver_bwr_OW/" --s batched_weighted_random -r 50,70 -a 1,1,1
     ```
 
-**Overhead for defense methods**
+**Overhead for defense methods (CW)**
 
 | Defense           | Latency Overhead | Bandwith Overhead |
 | ----------------- | ---------------- | ----------------- |
