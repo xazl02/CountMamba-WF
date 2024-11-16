@@ -27,6 +27,9 @@ pip install noise
 ```
 
 ## 2. Dataset
+<details>
+<summary>Prepare Dataset</summary>
+  
 ### 2.1 Download Dataset
 Prepare following datasets in "dataset" folder:
 - DF: provided by Tik-Tok
@@ -57,7 +60,6 @@ python MergeSingleTraces_openworld.py --input_dir "/nvme/dxw/TMWF-main/dataset/c
 ```
 
 ### 2.4 Convert to npz
-data.npz
 ```shell
 cd data_process
 python convert_to_npz.py --dataset CW
@@ -77,11 +79,11 @@ python convert_multi_tab_npz.py --dataset Open_5tab
 python convert_merge_npz.py --input_file "/nvme/dxw/TMWF-main/dataset/tbb_multi_tab/"
 python convert_merge_npz.py --input_file "/nvme/dxw/TMWF-main/dataset/chrome_multi_tab/"
 ```
+</details>
 
 **You can skip the above steps (from 2.1 to 2.4) by directly download**
 
 ### 2.5 Dataset Split
-train.npz, valid.npz, test.npz
 ```shell
 cd data_process
 python dataset_split.py --dataset CW
