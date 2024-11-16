@@ -63,20 +63,31 @@ def load_data(data_path):
     X = data["X"]
     y = data["y"]
 
-    return X, y
+    if args.fine_predict:
+        BAPM = data["BAPM"]
+        return X, BAPM, y
+    else:
+        return X, y
 
 
 if args.load_ratio != 100:
     test_X, test_y = load_data(os.path.join(in_path, f"test_p{args.load_ratio}.npz"))
 else:
-    test_X, test_y = load_data(os.path.join(in_path, f"test.npz"))
+    if args.fine_predict:
+        test_X, test_BAPM, test_y = load_data(os.path.join(in_path, f"test.npz"))
+    else:
+        test_X, test_y = load_data(os.path.join(in_path, f"test.npz"))
 
 if args.num_tabs == 1:
     num_classes = len(np.unique(test_y))
 else:
     num_classes = test_y.shape[1]
 
-dataset_test = CountDataset(test_X, test_y, args=args)
+if args.fine_predict:
+    dataset_test = CountDataset(test_X, test_y, args=args, BAPM=test_BAPM)
+else:
+    dataset_test = CountDataset(test_X, test_y, args=args)
+    
 data_loader_test = DataLoader(
     dataset_test,
     shuffle=False,
