@@ -184,6 +184,10 @@ done
   cd defense/front
   python main.py --p "../../dataset/CW"
   python main.py --p "../../dataset/OW"
+
+  cd defense_npz/front
+  python main.py --p "../../npz_dataset/Closed_2tab"
+  python main.py --p "../../npz_dataset/Open_2tab"
   ```
 - Tamaraw: Send packets at constant rate with fixed size.
   ``` shell
