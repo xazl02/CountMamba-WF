@@ -209,8 +209,8 @@ done
   python regulator_sim.py --source_path "../../dataset/OW/" --output_path "../results/regulator_OW/"
 
   cd defense_npz/regulartor
-  python regulator_sim.py --source_path "../../dataset/Closed_2tab" --output_path "../results/regulator_Closed_2tab"
-  python regulator_sim.py --source_path "../../dataset/Open_2tab" --output_path "../results/regulator_Open_2tab"
+  python regulator_sim.py --source_path "../../npz_dataset/Closed_2tab" --output_path "../results/regulator_Closed_2tab"
+  python regulator_sim.py --source_path "../../npz_dataset/Open_2tab" --output_path "../results/regulator_Open_2tab"
   ```
 - TrafficSilver: Split traffic.
   - Round Robin
