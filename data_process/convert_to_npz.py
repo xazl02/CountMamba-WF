@@ -50,7 +50,7 @@ def parse_file(files):
         packet_length = pad_sequence(data[:, 1], 10000).reshape((1, -1, 1))
         packet_length = np.where(packet_length == 0, 0, (packet_length // 512) + 1)
         packet_data = np.concatenate([timestamp, packet_length], axis=-1)
-        packet_data = packet_data.astype(np.float32)
+        packet_data = packet_data.astype(np.float16)
 
         file_sequence.append(packet_data)
 
@@ -61,5 +61,6 @@ X, labels = parse_file(filenames)
 max_category = np.max(labels[labels != -1])
 labels[labels == -1] = max_category + 1
 
+labels = labels.astype(np.uint8)
 print(f"Train: X = {X.shape}, y = {labels.shape}")
 np.savez(os.path.join(dataset_path, "data.npz"), X=X, y=labels)
