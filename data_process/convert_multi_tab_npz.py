@@ -37,6 +37,7 @@ for idx in tqdm(range(len(direction))):
 
     packet_length = direction[idx].reshape((1, -1, 1))
     packet_data = np.concatenate([timestamp, packet_length], axis=-1)
+    packet_data = packet_data.astype(np.float32)
 
     file_sequence.append(packet_data)
     file_labels.append(label[idx])
@@ -44,5 +45,6 @@ for idx in tqdm(range(len(direction))):
 X = np.concatenate(file_sequence, axis=0)
 labels = np.array(file_labels)
 
+labels = labels.astype(np.uint8)
 print(f"Train: X = {X.shape}, y = {labels.shape}")
-np.savez(outfile, X=X, y=labels)
+np.savez_compressed(outfile, X=X, y=labels)
