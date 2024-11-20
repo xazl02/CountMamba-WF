@@ -90,5 +90,7 @@ for i in range(y_true_coarse.shape[0]):
 
 BAPM = np.concatenate([annotations, BAPM_lb], axis=1)
 
+X = X.astype(np.float32)
+y = y.astype(np.uint8)
 print(f"Train: X = {X.shape}, y = {labels.shape}, BAPM = {BAPM.shape}")
-np.savez(outfile, X=X, y=binary, BAPM=BAPM)
+np.savez_compressed(outfile, X=X, y=binary, BAPM=BAPM)
