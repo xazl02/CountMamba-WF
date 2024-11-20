@@ -50,7 +50,7 @@ def parse_file(files):
         packet_length = pad_sequence(data[:, 1], 10000).reshape((1, -1, 1))
         packet_length = np.where(packet_length == 0, 0, (packet_length // 512) + 1)
         packet_data = np.concatenate([timestamp, packet_length], axis=-1)
-        packet_data = packet_data.astype(np.float16)
+        packet_data = packet_data.astype(np.float32)
 
         file_sequence.append(packet_data)
 
