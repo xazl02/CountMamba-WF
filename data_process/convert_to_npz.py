@@ -63,4 +63,4 @@ labels[labels == -1] = max_category + 1
 
 labels = labels.astype(np.uint8)
 print(f"Train: X = {X.shape}, y = {labels.shape}")
-np.savez(os.path.join(dataset_path, "data.npz"), X=X, y=labels)
+np.savez_compressed(os.path.join(dataset_path, "data.npz"), X=X, y=labels)
