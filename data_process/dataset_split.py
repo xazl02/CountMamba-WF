@@ -50,10 +50,10 @@ print(f"Test: X = {X_test.shape}, y = {y_test.shape}")
 
 # Save the split datasets into separate .npz files
 if "BAPM" in data.keys():
-    np.savez(os.path.join(dataset_path, "train.npz"), X=X_train, y=y_train, BAPM=BAPM_train)
-    np.savez(os.path.join(dataset_path, "valid.npz"), X=X_valid, y=y_valid, BAPM=BAPM_valid)
-    np.savez(os.path.join(dataset_path, "test.npz"), X=X_test, y=y_test, BAPM=BAPM_test)
+    np.savez_compressed(os.path.join(dataset_path, "train.npz"), X=X_train, y=y_train, BAPM=BAPM_train)
+    np.savez_compressed(os.path.join(dataset_path, "valid.npz"), X=X_valid, y=y_valid, BAPM=BAPM_valid)
+    np.savez_compressed(os.path.join(dataset_path, "test.npz"), X=X_test, y=y_test, BAPM=BAPM_test)
 else:
-    np.savez(os.path.join(dataset_path, "train.npz"), X=X_train, y=y_train)
-    np.savez(os.path.join(dataset_path, "valid.npz"), X=X_valid, y=y_valid)
-    np.savez(os.path.join(dataset_path, "test.npz"), X=X_test, y=y_test)
+    np.savez_compressed(os.path.join(dataset_path, "train.npz"), X=X_train, y=y_train)
+    np.savez_compressed(os.path.join(dataset_path, "valid.npz"), X=X_valid, y=y_valid)
+    np.savez_compressed(os.path.join(dataset_path, "test.npz"), X=X_test, y=y_test)
