@@ -80,11 +80,6 @@ python convert_multi_tab_npz.py --dataset Open_5tab
 python convert_merge_npz.py --input_file "/nvme/dxw/TMWF-main/dataset/tbb_multi_tab/"
 python convert_merge_npz.py --input_file "/nvme/dxw/TMWF-main/dataset/chrome_multi_tab/"
 ```
-</details>
-
-### Todo
-Provide npz dataset
-final_npz_dataset.zip
 
 ### 2.5 Dataset Split
 ```shell
@@ -99,6 +94,110 @@ do
   python dataset_split.py --dataset ${dataset} --use_stratify False
 done
 ```
+
+</details>
+
+## 3. Defense Dataset
+<details>
+  
+<summary>Prepare Dataset</summary>
+### 3.1 Defenses
+- WTF-PAD: Add dummy packets. No latency.
+  ``` shell
+  cd defense/wtfpad
+  python main.py --traces_path "../../dataset/CW"
+  python main.py --traces_path "../../dataset/OW"
+
+  cd defense_npz/wtfpad
+  python main.py --traces_path "../../npz_dataset/Closed_2tab"
+  python main.py --traces_path "../../npz_dataset/Open_2tab"
+  ```
+- FRONT: Add dummy packets with fixed length of 888. No latency.
+  ``` shell
+  cd defense/front
+  python main.py --p "../../dataset/CW"
+  python main.py --p "../../dataset/OW"
+
+  cd defense_npz/front
+  python main.py --p "../../npz_dataset/Closed_2tab"
+  python main.py --p "../../npz_dataset/Open_2tab"
+  ```
+- Tamaraw: Send packets at constant rate with fixed size.
+  ``` shell
+  cd defense/tamaraw
+  python tamaraw.py --traces_path "../../dataset/CW"
+  ```
+- RegulaTor: transmit packets in a time-sensitive manner
+  - When a download traffic 'surge' arrives, RegulaTor starts sending packets at a set initial rate.
+  - If no packets are available when one is scheduled, a dummy packet is sent instead.
+  - At the same time, RegulaTor sends upload packets at some fraction of the download packet sending rate.
+  ``` shell
+  cd defense/regulartor
+  python regulator_sim.py --source_path "../../dataset/CW/" --output_path "../results/regulator_CW/"
+  python regulator_sim.py --source_path "../../dataset/OW/" --output_path "../results/regulator_OW/"
+
+  cd defense_npz/regulartor
+  python regulator_sim.py --source_path "../../npz_dataset/Closed_2tab" --output_path "../results/regulator_Closed_2tab"
+  python regulator_sim.py --source_path "../../npz_dataset/Open_2tab" --output_path "../results/regulator_Open_2tab"
+  ```
+- TrafficSilver: Split traffic.
+  - Round Robin
+    ``` shell
+    cd defense/trafficsilver
+    python simulator.py --p "../../dataset/CW/" --o "../results/trafficsilver_rb_CW/" --s round_robin
+    python simulator.py --p "../../dataset/OW/" --o "../results/trafficsilver_rb_OW/" --s round_robin
+    ```
+  - By Direction
+    ``` shell
+    cd defense/trafficsilver
+    python simulator.py --p "../../dataset/CW/" --o "../results/trafficsilver_bd_CW/" --s in_and_out
+    python simulator.py --p "../../dataset/OW/" --o "../results/trafficsilver_bd_OW/" --s in_and_out
+    ```
+  - Batched Weighted Random
+    ``` shell
+    cd defense/trafficsilver
+    python simulator.py --p "../../dataset/CW/" --o "../results/trafficsilver_bwr_CW/" --s batched_weighted_random -r 50,70 -a 1,1,1
+    python simulator.py --p "../../dataset/OW/" --o "../results/trafficsilver_bwr_OW/" --s batched_weighted_random -r 50,70 -a 1,1,1
+    ```
+
+### 3.2 Overhead for defense methods (CW)
+
+| Defense           | Latency Overhead | Bandwith Overhead |
+| ----------------- | ---------------- | ----------------- |
+| WTF-PAD           | 1.00             | 1.47              |
+| FRONT             | 1.00             | 1.46              |
+| Tamaraw           | 2.82             | 3.69              |
+| RegulaTor         | 1.05             | 1.58              |
+| TrafficSilver-RB  | 1.00             | 1.00              |
+| TrafficSilver-BD  | 1.00             | 1.00              |
+| TrafficSilver-BWR | 1.00             | 1.00              | 
+
+### 3.3 Convert to npz
+``` shell
+cd data_process
+for dataset in wtfpad_CW front_CW tamaraw_CW regulator_CW trafficsilver_rb_CW trafficsilver_bd_CW trafficsilver_bwr_CW wtfpad_OW front_OW regulator_OW trafficsilver_rb_OW trafficsilver_bd_OW trafficsilver_bwr_OW
+do
+  python convert_to_npz.py --dataset ${dataset}
+done
+```
+
+### 3.4 Dataset Split
+```shell
+cd data_process
+for dataset in wtfpad_CW front_CW tamaraw_CW regulator_CW trafficsilver_rb_CW trafficsilver_bd_CW trafficsilver_bwr_CW wtfpad_OW front_OW regulator_OW trafficsilver_rb_OW trafficsilver_bd_OW trafficsilver_bwr_OW
+do
+  python dataset_split.py --dataset ${dataset}
+done
+```
+
+```shell
+for dataset in wtfpad_Closed_2tab wtfpad_Open_2tab front_Closed_2tab front_Open_2tab regulator_Closed_2tab regulator_Open_2tab
+do
+  python dataset_split.py --dataset ${dataset} --use_stratify False
+done
+```
+
+</details>
 
 ## 3. Website FingerPrinting
 
@@ -168,98 +267,6 @@ done
 
 
 ## 4. WF for defensed traffic
-### 4.1 Defenses
-- WTF-PAD: Add dummy packets. No latency.
-  ``` shell
-  cd defense/wtfpad
-  python main.py --traces_path "../../dataset/CW"
-  python main.py --traces_path "../../dataset/OW"
-
-  cd defense_npz/wtfpad
-  python main.py --traces_path "../../npz_dataset/Closed_2tab"
-  python main.py --traces_path "../../npz_dataset/Open_2tab"
-  ```
-- FRONT: Add dummy packets with fixed length of 888. No latency.
-  ``` shell
-  cd defense/front
-  python main.py --p "../../dataset/CW"
-  python main.py --p "../../dataset/OW"
-
-  cd defense_npz/front
-  python main.py --p "../../npz_dataset/Closed_2tab"
-  python main.py --p "../../npz_dataset/Open_2tab"
-  ```
-- Tamaraw: Send packets at constant rate with fixed size.
-  ``` shell
-  cd defense/tamaraw
-  python tamaraw.py --traces_path "../../dataset/CW"
-  ```
-- RegulaTor: transmit packets in a time-sensitive manner
-  - When a download traffic 'surge' arrives, RegulaTor starts sending packets at a set initial rate.
-  - If no packets are available when one is scheduled, a dummy packet is sent instead.
-  - At the same time, RegulaTor sends upload packets at some fraction of the download packet sending rate.
-  ``` shell
-  cd defense/regulartor
-  python regulator_sim.py --source_path "../../dataset/CW/" --output_path "../results/regulator_CW/"
-  python regulator_sim.py --source_path "../../dataset/OW/" --output_path "../results/regulator_OW/"
-
-  cd defense_npz/regulartor
-  python regulator_sim.py --source_path "../../npz_dataset/Closed_2tab" --output_path "../results/regulator_Closed_2tab"
-  python regulator_sim.py --source_path "../../npz_dataset/Open_2tab" --output_path "../results/regulator_Open_2tab"
-  ```
-- TrafficSilver: Split traffic.
-  - Round Robin
-    ``` shell
-    cd defense/trafficsilver
-    python simulator.py --p "../../dataset/CW/" --o "../results/trafficsilver_rb_CW/" --s round_robin
-    python simulator.py --p "../../dataset/OW/" --o "../results/trafficsilver_rb_OW/" --s round_robin
-    ```
-  - By Direction
-    ``` shell
-    cd defense/trafficsilver
-    python simulator.py --p "../../dataset/CW/" --o "../results/trafficsilver_bd_CW/" --s in_and_out
-    python simulator.py --p "../../dataset/OW/" --o "../results/trafficsilver_bd_OW/" --s in_and_out
-    ```
-  - Batched Weighted Random
-    ``` shell
-    cd defense/trafficsilver
-    python simulator.py --p "../../dataset/CW/" --o "../results/trafficsilver_bwr_CW/" --s batched_weighted_random -r 50,70 -a 1,1,1
-    python simulator.py --p "../../dataset/OW/" --o "../results/trafficsilver_bwr_OW/" --s batched_weighted_random -r 50,70 -a 1,1,1
-    ```
-
-**Overhead for defense methods (CW)**
-
-| Defense           | Latency Overhead | Bandwith Overhead |
-| ----------------- | ---------------- | ----------------- |
-| WTF-PAD           | 1.00             | 1.47              |
-| FRONT             | 1.00             | 1.46              |
-| Tamaraw           | 2.82             | 3.69              |
-| RegulaTor         | 1.05             | 1.58              |
-| TrafficSilver-RB  | 1.00             | 1.00              |
-| TrafficSilver-BD  | 1.00             | 1.00              |
-| TrafficSilver-BWR | 1.00             | 1.00              | 
-
-**Convert to npz**
-``` shell
-cd data_process
-for dataset in wtfpad_CW front_CW tamaraw_CW regulator_CW trafficsilver_rb_CW trafficsilver_bd_CW trafficsilver_bwr_CW wtfpad_OW front_OW regulator_OW trafficsilver_rb_OW trafficsilver_bd_OW trafficsilver_bwr_OW
-do
-  python convert_to_npz.py --dataset ${dataset}
-done
-```
-
-### Todo
-Provide npz dataset
-defense_npz_dataset.zip
-
-**Dataset Split**
-```shell
-cd data_process
-for dataset in wtfpad_CW front_CW tamaraw_CW regulator_CW trafficsilver_rb_CW trafficsilver_bd_CW trafficsilver_bwr_CW
-do
-  python dataset_split.py --dataset ${dataset}
-done
-```
 
 ### 4.2 DL-WF
 ```shell
