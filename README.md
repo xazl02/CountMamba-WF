@@ -193,11 +193,6 @@ done
   ``` shell
   cd defense/tamaraw
   python tamaraw.py --traces_path "../../dataset/CW"
-  python tamaraw.py --traces_path "../../dataset/OW"
-
-  cd defense_npz/tamaraw
-  python tamaraw.py --traces_path "../../npz_dataset/Closed_2tab"
-  python tamaraw.py --traces_path "../../npz_dataset/Open_2tab"
   ```
 - RegulaTor: transmit packets in a time-sensitive manner
   - When a download traffic 'surge' arrives, RegulaTor starts sending packets at a set initial rate.
