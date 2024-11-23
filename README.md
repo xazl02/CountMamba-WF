@@ -202,11 +202,9 @@ done
 
 **All formatted datasets can be downloaded at https://zenodo.org/records/14195051**
 
-## 4. 
+## 4. Website FingerPrinting
 
-## 3. Website FingerPrinting
-
-### 3.1 DL-WF
+### 4.1 DL-WF
 ```shell
 cd DL-WF
 for method in AWF DF RF TF TikTok TMWF VarCNN
@@ -225,7 +223,7 @@ do
 done
 ```
 
-### 3.2 ML-WF
+### 4.2 ML-WF
 ```shell
 cd ML-WF
 for dataset in CW OW k-NN W_T
@@ -238,7 +236,7 @@ do
 done
 ```
 
-### 3.3 CountMamba
+### 4.3 CountMamba
 ```shell
 cd CountMamba
 for dataset in CW OW
@@ -255,7 +253,7 @@ done
 
 ```
 
-### 3.4 Results on Normal Traffic
+### 4.4 Results on Normal Traffic
 
 | Dataset    | CW        | OW        | k-NN      | W_T       |
 | ---------- | --------- | --------- | --------- | --------- |
@@ -270,6 +268,8 @@ done
 | RF         | 98.67     | 98.58     | 93.04     | **99.38** | 
 | CountMamba | **98.97** | **98.68** | **94.72** | 99.23     |
 
+
+## Continue
 
 ## 4. WF for defensed traffic
 
