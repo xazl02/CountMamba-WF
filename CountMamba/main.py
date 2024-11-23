@@ -161,7 +161,7 @@ for epoch in range(args.epochs):
     for index, cur_data in enumerate(tqdm.tqdm(data_loader_train)):
         adjust_learning_rate(optimizer, index / len(data_loader_train) + epoch, args)
 
-        cur_X, cur_y = cur_data[0][0].cuda(), cur_data[1].cuda()
+        cur_X, cur_y = cur_data[0][0].cuda(), cur_data[1].cuda().long()
         idx = cur_data[0][1].cuda()
         optimizer.zero_grad()
 
