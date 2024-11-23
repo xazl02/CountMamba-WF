@@ -209,16 +209,16 @@ done
 cd DL-WF
 for method in AWF DF RF TF TikTok TMWF VarCNN
 do
-  python main.py --dataset CW --train_epochs 30 --config config/${method}.ini
+  python main.py --dataset CW --train_epochs 100 --config config/${method}.ini
   python test.py --dataset CW --config config/${method}.ini --load_ratio 100 --result_file test_p100
   
-  python main.py --dataset OW --train_epochs 30 --config config/${method}.ini
+  python main.py --dataset OW --train_epochs 100 --config config/${method}.ini
   python test.py --dataset OW --config config/${method}.ini --load_ratio 100 --result_file test_p100
   
-  python main.py --dataset k-NN --train_epochs 50 --config config/${method}.ini
+  python main.py --dataset k-NN --train_epochs 100 --config config/${method}.ini
   python test.py --dataset k-NN --config config/${method}.ini --load_ratio 100 --result_file test_p100
   
-  python main.py --dataset W_T --train_epochs 30 --config config/${method}.ini
+  python main.py --dataset W_T --train_epochs 100 --config config/${method}.ini
   python test.py --dataset W_T --config config/${method}.ini --load_ratio 100 --result_file test_p100
 done
 ```
@@ -239,13 +239,7 @@ done
 ### 4.3 CountMamba
 ```shell
 cd CountMamba
-for dataset in CW OW
-do
-  python main.py --dataset ${dataset} --log_transform --maximum_load_time 120 --max_matrix_len 2700
-  python test.py --dataset ${dataset} --log_transform --load_ratio 100 --result_file test_p100 --maximum_load_time 120 --max_matrix_len 2700
-done
-
-for dataset in k-NN W_T
+for dataset in CW OW k-NN W_T
 do
   python main.py --dataset ${dataset} --log_transform --maximum_load_time 120 --max_matrix_len 2700
   python test.py --dataset ${dataset} --log_transform --load_ratio 100 --result_file test_p100 --maximum_load_time 120 --max_matrix_len 2700
