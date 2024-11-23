@@ -247,8 +247,8 @@ done
 
 for dataset in k-NN W_T
 do
-  python main.py --dataset ${dataset} --log_transform --maximum_load_time 120 --max_matrix_len 2700 --seq_len 10000
-  python test.py --dataset ${dataset} --log_transform --load_ratio 100 --result_file test_p100 --maximum_load_time 120 --max_matrix_len 2700 --seq_len 10000
+  python main.py --dataset ${dataset} --log_transform --maximum_load_time 120 --max_matrix_len 2700
+  python test.py --dataset ${dataset} --log_transform --load_ratio 100 --result_file test_p100 --maximum_load_time 120 --max_matrix_len 2700
 done
 
 ```
