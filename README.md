@@ -1,6 +1,6 @@
 # CountMamba
 
-This reposity is official implementation of:
+This repository is official implementation of:
 
 ***CountMamba: A Generalized Website Fingerprinting Attack via Coarse-Grained Representation and Fine-Grained Prediction***
 
