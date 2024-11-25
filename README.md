@@ -204,6 +204,10 @@ done
 
 ## 4. Website FingerPrinting
 
+<details>
+  
+<summary>Code</summary>
+
 ### 4.1 DL-WF
 ```shell
 cd DL-WF
@@ -247,7 +251,7 @@ done
 
 ```
 
-### 4.4 Results on Normal Traffic
+<\details>
 
 | Dataset    | CW        | OW        | k-NN      | W_T       |
 | ---------- | --------- | --------- | --------- | --------- |
@@ -261,9 +265,6 @@ done
 | VarCNN     | 98.74     | 98.37     | 89.57     | **99.38** |
 | RF         | 98.67     | 98.58     | 93.04     | **99.38** | 
 | CountMamba | **98.97** | **98.68** | **94.72** | 99.23     |
-
-
-## Continue
 
 ## 4. WF for defensed traffic
 
