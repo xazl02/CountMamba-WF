@@ -170,6 +170,8 @@ def knn_predict(feature, feature_bank, feature_labels, classes, knn_k, knn_t):
     Returns:
     Tensor: Predicted labels.
     """
+    feature_labels = feature_labels.long()
+    
     sim_matrix = torch.mm(feature, feature_bank)
     sim_weight, sim_indices = sim_matrix.topk(k=knn_k, dim=-1)
     sim_labels = torch.gather(feature_labels.expand(feature.size(0), -1), dim=-1, index=sim_indices)
