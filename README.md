@@ -265,22 +265,25 @@ done
 | RF         | 98.67     | 98.58     | 93.04     | **99.38** | 
 | CountMamba | **98.97** | **98.68** | **94.72** | 99.23     |
 
-## 4. WF for defensed traffic
+## 5. WF for defensed traffic
+<details>
+  
+<summary>Code</summary>
 
-### 4.2 DL-WF
+### 5.1 DL-WF
 ```shell
 cd DL-WF
 for method in AWF DF RF TF TikTok TMWF VarCNN
 do
   for dataset in wtfpad_CW front_CW tamaraw_CW regulator_CW trafficsilver_rb_CW trafficsilver_bd_CW trafficsilver_bwr_CW
   do
-    python main.py --dataset ${dataset} --train_epochs 30 --config config/${method}.ini
+    python main.py --dataset ${dataset} --train_epochs 100 --config config/${method}.ini
     python test.py --dataset ${dataset} --config config/${method}.ini --load_ratio 100 --result_file test_p100
   done
 done
 ```
 
-### 4.3 ML-WF
+### 5.2 ML-WF
 ```shell
 cd ML-WF
 for dataset in wtfpad_CW front_CW tamaraw_CW regulator_CW trafficsilver_rb_CW trafficsilver_bd_CW trafficsilver_bwr_CW
@@ -293,7 +296,7 @@ do
 done
 ```
 
-### 4.4 CountMamba
+### 5.3 CountMamba
 ```shell
 cd CountMamba
 for dataset in wtfpad_CW front_CW regulator_CW trafficsilver_rb_CW trafficsilver_bd_CW trafficsilver_bwr_CW
@@ -306,7 +309,7 @@ python main.py --dataset tamaraw_CW --log_transform --seq_len 10000  --maximum_l
 python test.py --dataset tamaraw_CW --log_transform --seq_len 10000 --load_ratio 100 --result_file test_p100 --maximum_load_time 120 --max_matrix_len 2700
 ```
 
-### 4.5 Results on Defensed Traffic
+</details>
 
 | Dataset    | WTF-PAD | Front | Tamaraw | RegulaTor | TrafficSilver-RB | TrafficSilver-BD | TrafficSilver-BWR | 
 | ---------- | ------- | ----- | ------- | --------- | ---------------- | ---------------- | ----------------- |
