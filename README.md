@@ -255,18 +255,7 @@ python test.py --dataset k-NN --log_transform --seq_len 10000 --load_ratio 100 -
 
 </details>
 
-| Dataset    | CW        | OW        | k-NN      | W_T       |
-| ---------- | --------- | --------- | --------- | --------- |
-| k-FP       | 88.64     | 84.35     | 58.95     | 76.26     |
-| CUMUL      | 97.37     | 95.64     | 90.33     | 15.07     |
-| AWF        | 95.45     | 94.27     | 75.30     | 25.41     |
-| TF         | 97.96     | 94.63     | 53.19     | 47.29     |
-| TMWF       | 97.28     | 96.22     | 79.25     | 37.03     |
-| DF         | 98.47     | 97.71     | 87.12     | 37.36     |
-| TikTok     | 98.53     | 97.66     | 84.64     | 96.90     |
-| VarCNN     | 98.74     | 98.37     | 89.57     | **99.38** |
-| RF         | 98.67     | 98.58     | 93.04     | **99.38** | 
-| CountMamba | **98.97** | **98.68** | **94.72** | 99.23     |
+![image](https://github.com/SJTU-dxw/CountMamba-WF/blob/main/img/single_tab_result.png)
 
 ## 5. WF for defensed traffic
 <details>
