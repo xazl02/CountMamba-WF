@@ -242,11 +242,14 @@ done
 ### 4.3 CountMamba
 ```shell
 cd CountMamba
-for dataset in CW OW k-NN W_T
+for dataset in CW OW W_T
 do
   python main.py --dataset ${dataset} --log_transform --maximum_load_time 120 --max_matrix_len 2700
   python test.py --dataset ${dataset} --log_transform --load_ratio 100 --result_file test_p100 --maximum_load_time 120 --max_matrix_len 2700
 done
+
+python main.py --dataset k-NN --log_transform --seq_len 10000 --maximum_load_time 120 --max_matrix_len 2700
+python test.py --dataset k-NN --log_transform --seq_len 10000 --load_ratio 100 --result_file test_p100 --maximum_load_time 120 --max_matrix_len 2700
 
 ```
 
@@ -305,7 +308,7 @@ do
   python test.py --dataset ${dataset} --log_transform --load_ratio 100 --result_file test_p100 --maximum_load_time 120 --max_matrix_len 2700
 done
 
-python main.py --dataset tamaraw_CW --log_transform --seq_len 10000  --maximum_load_time 120 --max_matrix_len 2700
+python main.py --dataset tamaraw_CW --log_transform --seq_len 10000 --maximum_load_time 120 --max_matrix_len 2700
 python test.py --dataset tamaraw_CW --log_transform --seq_len 10000 --load_ratio 100 --result_file test_p100 --maximum_load_time 120 --max_matrix_len 2700
 ```
 
