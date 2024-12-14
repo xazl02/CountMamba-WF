@@ -283,7 +283,7 @@ do
   python k-FP.py --dataset ${dataset}
   python k-FP_test.py --dataset ${dataset} --load_ratio 100 --result_file test_p100
   
-  python CUMUL.py --dataset ${dataset}
+  python CUMUL.py --dataset ${dataset}  # Set max_iter=100,0000 for trafficsilver_bwr_CW
   python CUMUL_test.py --dataset ${dataset} --load_ratio 100 --result_file test_p100
 done
 ```
