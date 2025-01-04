@@ -356,7 +356,7 @@ python gen_taf.py --dataset CW --in_file aug_valid
 Holmes/max_f1.pth
 ```shell
 cd Holmes
-python train.py --dataset CW --train_epochs 30
+python train.py --dataset CW --train_epochs 100
 ```
 spatial_distribution.npz
 ```shell
@@ -391,8 +391,7 @@ python test.py --dataset CW --test_file taf_test_p80 --result_file test_p80
 python test.py --dataset CW --test_file taf_test_p90 --result_file test_p90
 python test.py --dataset CW --test_file taf_test_p100 --result_file test_p100
 ```
-### 5.2 DL-WF
-**Skip this step if you have already trained models in 3.1 DL-WF**
+### 6.2 DL-WF
 ```shell
 cd DL-WF 
 python main.py --dataset CW --train_epochs 100 --config config/AWF.ini
@@ -417,8 +416,7 @@ do
   python test.py --dataset CW --config config/VarCNN.ini --load_ratio ${percent} --result_file test_p${percent}
 done
 ```
-### 5.3 ML-WF
-**Skip this step if you have already trained models in 3.2 ML-WF**
+### 6.3 ML-WF
 ```shell
 cd ML-WF
 python k-FP.py --dataset CW
@@ -434,7 +432,7 @@ do
 done 
 ```
 
-### 5.4 CountMamba
+### 6.4 CountMamba
 ```shell
 cd CountMamba
 python main.py --dataset CW --log_transform --early_stage --num_aug 50 --maximum_load_time 120 --max_matrix_len 2700
