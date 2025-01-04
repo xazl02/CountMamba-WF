@@ -317,6 +317,9 @@ python test.py --dataset tamaraw_CW --log_transform --seq_len 10000 --load_ratio
 | CountMamba |         |       |         |           |                  |                  |                   |
 
 ## 6. WF for early-stage detection
+<details>
+  
+<summary>Code</summary>
 
 Generate early-stage test set
 ```shell
@@ -445,6 +448,9 @@ do
   python test.py --dataset CW --log_transform --load_ratio ${percent} --result_file test_p${percent} --maximum_load_time 120 --max_matrix_len 2700
 done
 ```
+
+</details>
+
 ### 5.5 Results on Early-Stage Traffic (F1-score)
 | Loaded     | 10%   | 20%   | 30%   | 40%   | 50%   | 60%   | 70%   | 80%   | 90%   | 100%  |
 | ---------- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
