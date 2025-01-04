@@ -303,18 +303,7 @@ python test.py --dataset tamaraw_CW --log_transform --seq_len 10000 --load_ratio
 
 </details>
 
-| Dataset    | WTF-PAD | Front | Tamaraw | RegulaTor | TrafficSilver-RB | TrafficSilver-BD | TrafficSilver-BWR | 
-| ---------- | ------- | ----- | ------- | --------- | ---------------- | ---------------- | ----------------- |
-| k-FP       |         |       |         |           |                  |                  |                   |
-| CUMUL      |         |       |         |           |                  |                  |                   |
-| AWF        |         |       |         |           |                  |                  |                   |
-| TF         |         |       |         |           |                  |                  |                   |
-| TMWF       |         |       |         |           |                  |                  |                   |
-| DF         |         |       |         |           |                  |                  |                   |
-| Tik-Tok    |         |       |         |           |                  |                  |                   |
-| VarCNN     |         |       |         |           |                  |                  |                   |
-| RF         |         |       |         |           |                  |                  |                   |
-| CountMamba |         |       |         |           |                  |                  |                   |
+![image](https://github.com/SJTU-dxw/CountMamba-WF/blob/main/img/defense_result.png)
 
 ## 6. WF for early-stage detection
 <details>
