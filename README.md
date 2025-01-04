@@ -316,7 +316,7 @@ python test.py --dataset tamaraw_CW --log_transform --seq_len 10000 --load_ratio
 | RF         |         |       |         |           |                  |                  |                   |
 | CountMamba |         |       |         |           |                  |                  |                   |
 
-## 5. WF for early-stage detection
+## 6. WF for early-stage detection
 
 Generate early-stage test set
 ```shell
@@ -324,7 +324,7 @@ cd data_process
 python gen_early_traffic.py --dataset CW
 ```
 
-### 5.1 Holmes
+### 6.1 Holmes
 temporal_train.py, temporal_valid.py
 ```shell
 cd Holmes
