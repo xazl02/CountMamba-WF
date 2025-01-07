@@ -442,7 +442,11 @@ done
 
 ![image](https://github.com/SJTU-dxw/CountMamba-WF/blob/main/img/early_stage_result.png)
 
-### 5.6 Real-World Early-Stage Traffic Classification
+## 7 Real-World Early-Stage Traffic Classification
+<details>
+  
+<summary>Code</summary>
+
 ```shell
 cd EarlyStage
 for threshold in 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0
@@ -472,6 +476,7 @@ do
   done
 done
 ```
+</details>
 
 | Threshold  | 0.0 | 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 | 0.8 | 0.9 | 1.0 | 1.01 |
 | ---------- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ---- |
