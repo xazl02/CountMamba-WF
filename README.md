@@ -442,7 +442,7 @@ done
 
 ![image](https://github.com/SJTU-dxw/CountMamba-WF/blob/main/img/early_stage_result.png)
 
-## 7 Real-World Early-Stage Traffic Classification
+## 7. Real-World Early-Stage Traffic Classification
 <details>
   
 <summary>Code</summary>
