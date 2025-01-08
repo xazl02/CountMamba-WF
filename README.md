@@ -449,7 +449,7 @@ done
 
 ```shell
 cd EarlyStage
-for threshold in 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0
+for threshold in 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 0.95 1.0
 do
   python main.py --dataset CW --model CountMamba --threshold ${threshold} --device cuda --maximum_load_time 120 --max_matrix_len 2700 --embed_dim 256
 done
@@ -458,7 +458,7 @@ for device in cuda
 do
   for model in RF AWF DF TMWF TikTok VarCNN
   do
-    for threshold in 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0
+    for threshold in 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 0.95 1.0
     do
       python main.py --dataset CW --model ${model} --threshold ${threshold} --device ${device}
     done
