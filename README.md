@@ -442,7 +442,7 @@ done
 
 ![image](https://github.com/SJTU-dxw/CountMamba-WF/blob/main/img/early_stage_result.png)
 
-## 7. Real-World Early-Stage Traffic Classification
+### 6.5 Real-World Early-Stage Traffic Classification
 <details>
   
 <summary>Code</summary>
@@ -481,12 +481,12 @@ done
 ![image](https://github.com/SJTU-dxw/CountMamba-WF/blob/main/img/realworld_earlystage_result.png)
 
 
-## 8. WF for multi-tab detection
+## 7. WF for multi-tab detection
 <details>
   
 <summary>Code</summary>
 
-### 8.1 DL-WF
+### 7.1 DL-WF
 ```shell
 cd DL-WF
 for method in ARES TMWF AWF DF MultiTab_RF TikTok VarCNN
@@ -502,7 +502,7 @@ do
 done
 ```
 
-### 8.2 CountMamba
+### 7.2 CountMamba
 ```shell
 cd CountMamba
 for num in 2 3 4 5
@@ -529,7 +529,11 @@ done
 | CountMamba  |             |             |             |             |           |           |           |           |
 
 
-### 6.4 Fine-grained multi-tab detection
+### 7.3 Fine-grained multi-tab detection
+<details>
+  
+<summary>Code</summary>
+
 ```shell
 cd DL-WF
 for method in ARES TMWF AWF DF MultiTab_RF TikTok VarCNN
@@ -556,3 +560,4 @@ do
   python test.py --dataset chrome_multi_tab --log_transform --num_tabs ${num} --seq_len 10000 --maximum_load_time 160 --max_matrix_len 3600 --load_ratio 100 --result_file test_p100 --fine_predict
 done
 ```
+</details>
