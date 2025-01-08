@@ -478,19 +478,15 @@ done
 ```
 </details>
 
-| Threshold  | 0.0 | 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 | 0.8 | 0.9 | 1.0 | 1.01 |
-| ---------- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ---- |
-| AWF        |     |     |     |     |     |     |     |     |     |     |     |      |
-| TMWF       |     |     |     |     |     |     |     |     |     |     |     |      |
-| DF         |     |     |     |     |     |     |     |     |     |     |     |      |
-| TikTok     |     |     |     |     |     |     |     |     |     |     |     |      |
-| VarCNN     |     |     |     |     |     |     |     |     |     |     |     |      |
-| CountMamba |     |     |     |     |     |     |     |     |     |     |     |      |
+![image](https://github.com/SJTU-dxw/CountMamba-WF/blob/main/img/realworld_earlystage_result.png)
 
 
-## 6. WF for multi-tab detection
+## 8. WF for multi-tab detection
+<details>
+  
+<summary>Code</summary>
 
-### 6.1 DL-WF
+### 8.1 DL-WF
 ```shell
 cd DL-WF
 for method in ARES TMWF AWF DF MultiTab_RF TikTok VarCNN
@@ -506,7 +502,7 @@ do
 done
 ```
 
-### 6.2 CountMamba
+### 8.2 CountMamba
 ```shell
 cd CountMamba
 for num in 2 3 4 5
@@ -518,6 +514,7 @@ do
   python test.py --dataset Open_${num}tab --log_transform --num_tabs ${num} --seq_len 10000 --maximum_load_time 320 --max_matrix_len 7200 --load_ratio 100 --result_file test_p100
 done
 ```
+</details>
 
 ### 6.3 Results on Multi-Tab Traffic
 | Dataset     | Closed_2tab | Closed_3tab | Closed_4tab | Closed_5tab | Open_2tab | Open_3tab | Open_4tab | Open_5tab |
