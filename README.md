@@ -516,17 +516,7 @@ done
 ```
 </details>
 
-### 6.3 Results on Multi-Tab Traffic
-| Dataset     | Closed_2tab | Closed_3tab | Closed_4tab | Closed_5tab | Open_2tab | Open_3tab | Open_4tab | Open_5tab |
-| ----------- | ----------- | ----------- | ----------- | ----------- | --------- | --------- | --------- | --------- |
-| AWF         |             |             |             |             |           |           |           |           |
-| TMWF        |             |             |             |             |           |           |           |           |
-| DF          |             |             |             |             |           |           |           |           |
-| TikTok      |             |             |             |             |           |           |           |           |
-| VarCNN      |             |             |             |             |           |           |           |           |
-| MultiTab_RF |             |             |             |             |           |           |           |           |
-| ARES        |             |             |             |             |           |           |           |           |
-| CountMamba  |             |             |             |             |           |           |           |           |
+![image](https://github.com/SJTU-dxw/CountMamba-WF/blob/main/img/multi_tab_result.png)
 
 
 ### 7.3 Fine-grained multi-tab detection
