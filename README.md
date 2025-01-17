@@ -554,3 +554,18 @@ done
 
 ![image](https://github.com/SJTU-dxw/CountMamba-WF/blob/main/img/finegrained_multitab_result.png)
 
+## 8. Ablation Study
+### 8.1 Embedding Dimension
+```shell
+cd CountMamba
+for embed_dim in 32 64 128 256 512 1024
+do
+  python main.py --dataset Closed_2tab --log_transform --num_tabs 2 --seq_len 10000 --maximum_load_time 320 --max_matrix_len 7200 --embed_dim ${embed_dim}
+  python test.py --dataset Closed_2tab --log_transform --num_tabs 2 --seq_len 10000 --maximum_load_time 320 --max_matrix_len 7200 --load_ratio 100 --result_file test_p100 --embed_dim ${embed_dim}
+  
+  python main.py --dataset Open_2tab --log_transform --num_tabs 2 --seq_len 10000 --maximum_load_time 320 --max_matrix_len 7200 --embed_dim ${embed_dim}
+  python test.py --dataset Open_2tab --log_transform --num_tabs 2 --seq_len 10000 --maximum_load_time 320 --max_matrix_len 7200 --load_ratio 100 --result_file test_p100 --embed_dim ${embed_dim}
+done
+```
+</details>
+
