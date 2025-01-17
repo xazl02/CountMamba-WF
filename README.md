@@ -551,3 +551,6 @@ do
 done
 ```
 </details>
+
+![image](https://github.com/SJTU-dxw/CountMamba-WF/blob/main/img/finegrained_multitab_result.png)
+
