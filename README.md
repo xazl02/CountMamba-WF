@@ -554,7 +554,7 @@ done
 
 ![image](https://github.com/SJTU-dxw/CountMamba-WF/blob/main/img/finegrained_multitab_result.png)
 
-## 8. Ablation Study
+## 8. Ablation Study On Closed-world 2-tab
 ### 8.1 Embedding Dimension
 | Embedding Dim | 32    | 64    | 128   | 256   |
 | ------------- | ----- | ----- | ----- | ----- |
