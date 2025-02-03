@@ -555,11 +555,11 @@ done
 ![image](https://github.com/SJTU-dxw/CountMamba-WF/blob/main/img/finegrained_multitab_result.png)
 
 ## 8. Ablation Study on 2-tab Closed-world
-### 8.1 Embedding Dimension
-| Embedding Dim | 32    | 64    | 128   | 256   |
-| ------------- | ----- | ----- | ----- | ----- |
-| Closed        | 80.69 | 87.51 | 90.06 | 91.81 |
-| Open          | 79.80 | 85.95 | 88.73 | 90.17 | 
+### 8.1 Maximum Trace Length
+| Maximum Trace Length | 5000  | 8000  | 10000 | 15000 | 20000 |
+| -------------------- | ----- | ----- | ----- | ----- | ----- |
+| Closed               |       |       | 91.81 |       |       |
+| Open                 |       |       | 90.17 |       |       |
 
 ### 8.2 Maximum Loading Time
 | Maximum Loading Time | 160   | 240   | 320   | 480   | 640   |
@@ -573,3 +573,20 @@ done
 | Closed               |       |       | 91.81 |       |       |
 | Open                 |       |       | 90.17 |       |       |
 
+### 8.4 Embedding Dimension
+| Embedding Dim | 32    | 64    | 128   | 256   |
+| ------------- | ----- | ----- | ----- | ----- |
+| Closed        | 80.69 | 87.51 | 90.06 | 91.81 |
+| Open          | 79.80 | 85.95 | 88.73 | 90.17 | 
+
+### 8.5 Number of Layers
+| Number of Layers | 1   | 2   | 3   | 4   | 5   |
+| ---------------- | --- | --- | --- | --- | --- |
+| Closed           |     |     |     |     |     |
+| Open             |     |     |     |     |     |
+
+### 8.6 Drop Path Rate
+| Drop Path Rate | 0.0 | 0.1 | 0.2 | 0.4 | 0.6 | 
+| -------------- | --- | --- | --- | --- | --- |
+| Closed         |     |     |     |     |     |
+| Open           |     |     |     |     |     |
