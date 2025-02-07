@@ -570,8 +570,8 @@ done
 ### 8.3 Time Window Length
 |  Time Window Length  |  22   |  33   |  44   |  66   |  88  |
 | -------------------- | ----- | ----- | ----- | ----- | ----- |
-| Closed               | 93.07 |       | 91.81 |       |       |
-| Open                 | 91.77 |       | 90.17 |       |       |
+| Closed               | 93.07 | 92.65 | 91.81 |       |       |
+| Open                 | 91.77 | 91.14 | 90.17 |       |       |
 
 ### 8.4 Embedding Dimension
 | Embedding Dim | 32    | 64    | 128   | 256   |
