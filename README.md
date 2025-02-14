@@ -582,8 +582,8 @@ done
 ### 8.5 Number of Layers
 | Number of Layers | 1   | 2   | 3   | 4   | 5   |
 | ---------------- | --- | --- | --- | --- | --- |
-| Closed           |     |     |     |     |     |
-| Open             |     |     |     |     |     |
+| Closed           |     |     |91.81|     |     |
+| Open             |     |     |90.17|     |     |
 
 ### 8.6 Drop Path Rate
 | Drop Path Rate | 0.0 | 0.1 | 0.2 | 0.4 | 0.6 | 
