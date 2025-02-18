@@ -554,7 +554,7 @@ done
 
 ![image](https://github.com/SJTU-dxw/CountMamba-WF/blob/main/img/finegrained_multitab_result.png)
 
-## 8. Ablation Study on 2-tab Closed-world
+## 8. Ablation Study on 2-tab Dataset
 ### 8.1 Maximum Trace Length
 | Maximum Trace Length | 5000  | 8000  | 10000 | 15000 | 20000 |
 | -------------------- | ----- | ----- | ----- | ----- | ----- |
@@ -580,10 +580,10 @@ done
 | Open          | 79.80 | 85.95 | 88.73 | 90.17 | 
 
 ### 8.5 Number of Layers
-| Number of Layers | 1   | 2   | 3   | 4   | 5   |
-| ---------------- | --- | --- | --- | --- | --- |
-| Closed           |90.01|91.22|91.81|92.03|     |
-| Open             |88.70|89.53|90.17|     |     |
+| Number of Layers | 1   | 2   | 3   | 4   |
+| ---------------- | --- | --- | --- | --- |
+| Closed           |90.01|91.22|91.81|92.03|
+| Open             |88.70|89.53|90.17|     |
 
 ### 8.6 Drop Path Rate
 | Drop Path Rate | 0.0 | 0.1 | 0.2 | 0.4 | 0.6 | 
