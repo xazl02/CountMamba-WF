@@ -229,13 +229,14 @@ do
 done
 ```
 
-### 6.5 Real-World Early-Stage Traffic Classification
+### 6.1 Real-World Early-Stage Traffic Classification
 ```shell
 cd EarlyStage
 for threshold in 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 0.95 1.0
 do
   python main.py --dataset CW --model CountMamba --threshold ${threshold} --device cuda --maximum_load_time 120 --max_matrix_len 2700 --embed_dim 256
 done
+```
 
 ## 7. WF for multi-tab detection
 ```shell
@@ -250,7 +251,7 @@ do
 done
 ```
 
-## 8. Fine-grained multi-tab detection
+### 7.1 Fine-grained multi-tab detection
 ```shell
 cd CountMamba
 for num in 2
