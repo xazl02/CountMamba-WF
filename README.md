@@ -4,6 +4,8 @@ This repository is official implementation of:
 
 ***CountMamba: A Generalized Website Fingerprinting Attack via Coarse-Grained Representation and Fine-Grained Prediction***
 
+In the 2025 IEEE Symposium on Security and Privacy (***S&P 2025***)
+
 ## 1. Denpendency
 ``` shell
 conda create -n myenv python=3.10
@@ -161,19 +163,7 @@ done
     python simulator.py --p "../../dataset/OW/" --o "../results/trafficsilver_bwr_OW/" --s batched_weighted_random -r 50,70 -a 1,1,1
     ```
 
-### 3.2 Overhead for defense methods (CW)
-
-| Defense           | Latency Overhead | Bandwith Overhead |
-| ----------------- | ---------------- | ----------------- |
-| WTF-PAD           | 1.00             | 1.47              |
-| FRONT             | 1.00             | 1.46              |
-| Tamaraw           | 2.82             | 3.69              |
-| RegulaTor         | 1.05             | 1.58              |
-| TrafficSilver-RB  | 1.00             | 1.00              |
-| TrafficSilver-BD  | 1.00             | 1.00              |
-| TrafficSilver-BWR | 1.00             | 1.00              | 
-
-### 3.3 Convert to npz
+### 3.2 Convert to npz
 ``` shell
 cd data_process
 for dataset in wtfpad_CW front_CW tamaraw_CW regulator_CW trafficsilver_rb_CW trafficsilver_bd_CW trafficsilver_bwr_CW wtfpad_OW front_OW regulator_OW trafficsilver_rb_OW trafficsilver_bd_OW trafficsilver_bwr_OW
@@ -182,7 +172,7 @@ do
 done
 ```
 
-### 3.4 Dataset Split
+### 3.3 Dataset Split
 ```shell
 cd data_process
 for dataset in wtfpad_CW front_CW tamaraw_CW regulator_CW trafficsilver_rb_CW trafficsilver_bd_CW trafficsilver_bwr_CW wtfpad_OW front_OW regulator_OW trafficsilver_rb_OW trafficsilver_bd_OW trafficsilver_bwr_OW
@@ -203,250 +193,43 @@ done
 **All formatted datasets can be downloaded at https://zenodo.org/records/14195051**
 
 ## 4. Website FingerPrinting
-<details>
-  
-<summary>Code</summary>
-
-### 4.1 DL-WF
-```shell
-cd DL-WF
-for method in AWF DF RF TF TikTok TMWF VarCNN
-do
-  python main.py --dataset CW --train_epochs 100 --config config/${method}.ini
-  python test.py --dataset CW --config config/${method}.ini --load_ratio 100 --result_file test_p100
-  
-  python main.py --dataset OW --train_epochs 100 --config config/${method}.ini
-  python test.py --dataset OW --config config/${method}.ini --load_ratio 100 --result_file test_p100
-  
-  python main.py --dataset k-NN --train_epochs 100 --config config/${method}.ini
-  python test.py --dataset k-NN --config config/${method}.ini --load_ratio 100 --result_file test_p100
-  
-  python main.py --dataset W_T --train_epochs 100 --config config/${method}.ini
-  python test.py --dataset W_T --config config/${method}.ini --load_ratio 100 --result_file test_p100
-done
-```
-
-### 4.2 ML-WF
-```shell
-cd ML-WF
-for dataset in CW OW k-NN W_T
-do
-  python k-FP.py --dataset ${dataset}
-  python k-FP_test.py --dataset ${dataset} --load_ratio 100 --result_file test_p100
-  
-  python CUMUL.py --dataset ${dataset}
-  python CUMUL_test.py --dataset ${dataset} --load_ratio 100 --result_file test_p100
-done
-```
-
-### 4.3 CountMamba
 ```shell
 cd CountMamba
-for dataset in CW OW W_T
+for dataset in CW OW
 do
   python main.py --dataset ${dataset} --log_transform --maximum_load_time 120 --max_matrix_len 2700
   python test.py --dataset ${dataset} --log_transform --load_ratio 100 --result_file test_p100 --maximum_load_time 120 --max_matrix_len 2700
 done
-
-python main.py --dataset k-NN --log_transform --seq_len 10000 --maximum_load_time 120 --max_matrix_len 2700
-python test.py --dataset k-NN --log_transform --seq_len 10000 --load_ratio 100 --result_file test_p100 --maximum_load_time 120 --max_matrix_len 2700
-
 ```
-
-</details>
-
-![image](https://github.com/SJTU-dxw/CountMamba-WF/blob/main/img/single_tab_result.png)
 
 ## 5. WF for defensed traffic
-<details>
-  
-<summary>Code</summary>
-
-### 5.1 DL-WF
-```shell
-cd DL-WF
-for method in AWF DF RF TF TikTok TMWF VarCNN
-do
-  for dataset in wtfpad_CW front_CW tamaraw_CW regulator_CW trafficsilver_rb_CW trafficsilver_bd_CW trafficsilver_bwr_CW
-  do
-    python main.py --dataset ${dataset} --train_epochs 100 --config config/${method}.ini
-    python test.py --dataset ${dataset} --config config/${method}.ini --load_ratio 100 --result_file test_p100
-  done
-done
-```
-
-### 5.2 ML-WF
-```shell
-cd ML-WF
-for dataset in wtfpad_CW front_CW tamaraw_CW regulator_CW trafficsilver_rb_CW trafficsilver_bd_CW trafficsilver_bwr_CW
-do
-  python k-FP.py --dataset ${dataset}
-  python k-FP_test.py --dataset ${dataset} --load_ratio 100 --result_file test_p100
-  
-  python CUMUL.py --dataset ${dataset}  # Set max_iter=100,0000 for trafficsilver_bwr_CW
-  python CUMUL_test.py --dataset ${dataset} --load_ratio 100 --result_file test_p100
-done
-```
-
-### 5.3 CountMamba
 ```shell
 cd CountMamba
-for dataset in wtfpad_CW front_CW regulator_CW trafficsilver_rb_CW trafficsilver_bd_CW trafficsilver_bwr_CW
+for dataset in wtfpad_CW front_CW regulator_CW tamaraw_CW trafficsilver_rb_CW trafficsilver_bd_CW trafficsilver_bwr_CW
 do
   python main.py --dataset ${dataset} --log_transform --maximum_load_time 120 --max_matrix_len 2700
   python test.py --dataset ${dataset} --log_transform --load_ratio 100 --result_file test_p100 --maximum_load_time 120 --max_matrix_len 2700
 done
-
-python main.py --dataset tamaraw_CW --log_transform --seq_len 10000 --maximum_load_time 120 --max_matrix_len 2700
-python test.py --dataset tamaraw_CW --log_transform --seq_len 10000 --load_ratio 100 --result_file test_p100 --maximum_load_time 120 --max_matrix_len 2700
 ```
 
-</details>
-
-![image](https://github.com/SJTU-dxw/CountMamba-WF/blob/main/img/defense_result.png)
-
 ## 6. WF for early-stage detection
-<details>
-  
-<summary>Code</summary>
-
 Generate early-stage test set
 ```shell
 cd data_process
 python gen_early_traffic.py --dataset CW
 ```
 
-### 6.1 Holmes
-temporal_train.py, temporal_valid.py
-```shell
-cd Holmes
-python temporal_extractor.py --dataset CW --in_file train
-python temporal_extractor.py --dataset CW --in_file valid
-```
-RF_IS/max_f1.pth
-```shell
-cd Holmes
-python train_RF.py --dataset CW --train_epochs 30
-```
-attr_DeepLiftShap.npz
-```shell
-cd Holmes
-python feature_attr.py --dataset CW
-```
-aug_train.npz, aug_valid.npz
-```shell
-cd Holmes
-python data_augmentation.py --dataset CW --in_file train
-python data_augmentation.py --dataset CW --in_file valid
-```
-taf_aug_train.npz, taf_aug_valid.npz
-```shell
-cd Holmes
-python gen_taf.py --dataset CW --in_file aug_train
-python gen_taf.py --dataset CW --in_file aug_valid
-```
-Holmes/max_f1.pth
-```shell
-cd Holmes
-python train.py --dataset CW --train_epochs 100
-```
-spatial_distribution.npz
-```shell
-cd Holmes
-python spatial_analysis.py --dataset CW
-```
-taf_test_p10.npz, ..., taf_test_p100.npz
-```shell
-cd Holmes
-python gen_taf.py --dataset CW --in_file test_p10
-python gen_taf.py --dataset CW --in_file test_p20
-python gen_taf.py --dataset CW --in_file test_p30
-python gen_taf.py --dataset CW --in_file test_p40
-python gen_taf.py --dataset CW --in_file test_p50
-python gen_taf.py --dataset CW --in_file test_p60
-python gen_taf.py --dataset CW --in_file test_p70
-python gen_taf.py --dataset CW --in_file test_p80
-python gen_taf.py --dataset CW --in_file test_p90
-python gen_taf.py --dataset CW --in_file test_p100
-```
-test_p10.json, ..., test_p100.json
-```shell
-cd Holmes
-python test.py --dataset CW --test_file taf_test_p10 --result_file test_p10
-python test.py --dataset CW --test_file taf_test_p20 --result_file test_p20
-python test.py --dataset CW --test_file taf_test_p30 --result_file test_p30
-python test.py --dataset CW --test_file taf_test_p40 --result_file test_p40
-python test.py --dataset CW --test_file taf_test_p50 --result_file test_p50
-python test.py --dataset CW --test_file taf_test_p60 --result_file test_p60
-python test.py --dataset CW --test_file taf_test_p70 --result_file test_p70
-python test.py --dataset CW --test_file taf_test_p80 --result_file test_p80
-python test.py --dataset CW --test_file taf_test_p90 --result_file test_p90
-python test.py --dataset CW --test_file taf_test_p100 --result_file test_p100
-```
-### 6.2 DL-WF
-```shell
-cd DL-WF 
-python main.py --dataset CW --train_epochs 100 --config config/AWF.ini
-python main.py --dataset CW --train_epochs 100 --config config/DF.ini
-python main.py --dataset CW --train_epochs 100 --config config/RF.ini
-python main.py --dataset CW --train_epochs 100 --config config/TF.ini
-python main.py --dataset CW --train_epochs 100 --config config/TikTok.ini
-python main.py --dataset CW --train_epochs 100 --config config/TMWF.ini
-python main.py --dataset CW --train_epochs 100 --config config/VarCNN.ini
-```
-
-```shell
-cd DL-WF
-for percent in {10..100..10}
-do
-  python test.py --dataset CW --config config/AWF.ini --load_ratio ${percent} --result_file test_p${percent}
-  python test.py --dataset CW --config config/DF.ini --load_ratio ${percent} --result_file test_p${percent}
-  python test.py --dataset CW --config config/RF.ini --load_ratio ${percent} --result_file test_p${percent}
-  python test.py --dataset CW --config config/TF.ini --load_ratio ${percent} --result_file test_p${percent}
-  python test.py --dataset CW --config config/TikTok.ini --load_ratio ${percent} --result_file test_p${percent}
-  python test.py --dataset CW --config config/TMWF.ini --load_ratio ${percent} --result_file test_p${percent}
-  python test.py --dataset CW --config config/VarCNN.ini --load_ratio ${percent} --result_file test_p${percent}
-done
-```
-### 6.3 ML-WF
-```shell
-cd ML-WF
-python k-FP.py --dataset CW
-python CUMUL.py --dataset CW
-```
-
-```shell
-cd ML-WF
-for percent in {10..100..10}
-do
-  python k-FP_test.py --dataset CW --load_ratio ${percent} --result_file test_p${percent}
-  python CUMUL_test.py --dataset CW --load_ratio ${percent} --result_file test_p${percent}
-done 
-```
-
-### 6.4 CountMamba
 ```shell
 cd CountMamba
 python main.py --dataset CW --log_transform --early_stage --num_aug 50 --maximum_load_time 120 --max_matrix_len 2700
-```
 
-```shell
-cd CountMamba
 for percent in {10..100..10}
 do
   python test.py --dataset CW --log_transform --load_ratio ${percent} --result_file test_p${percent} --maximum_load_time 120 --max_matrix_len 2700
 done
 ```
 
-</details>
-
-![image](https://github.com/SJTU-dxw/CountMamba-WF/blob/main/img/early_stage_result.png)
-
 ### 6.5 Real-World Early-Stage Traffic Classification
-<details>
-  
-<summary>Code</summary>
-
 ```shell
 cd EarlyStage
 for threshold in 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 0.95 1.0
@@ -466,43 +249,7 @@ do
 done
 ```
 
-```shell
-cd EarlyStage
-for device in cuda
-do
-  for threshold in 0.0
-  do
-    python main.py --dataset CW --model Holmes --threshold ${threshold} --device ${device}
-  done
-done
-```
-</details>
-
-![image](https://github.com/SJTU-dxw/CountMamba-WF/blob/main/img/realworld_earlystage_result.png)
-
-
 ## 7. WF for multi-tab detection
-<details>
-  
-<summary>Code</summary>
-
-### 7.1 DL-WF
-```shell
-cd DL-WF
-for method in ARES TMWF AWF DF MultiTab_RF TikTok VarCNN
-do
-  for num in 2 3 4 5
-  do
-    python main.py --dataset Closed_${num}tab --train_epochs 100 --config config/${method}.ini --num_tabs ${num}
-    python test.py --dataset Closed_${num}tab --config config/${method}.ini --load_ratio 100 --result_file test_p100 --num_tabs ${num}
-    
-    python main.py --dataset Open_${num}tab --train_epochs 100 --config config/${method}.ini --num_tabs ${num}
-    python test.py --dataset Open_${num}tab --config config/${method}.ini --load_ratio 100 --result_file test_p100 --num_tabs ${num}
-  done
-done
-```
-
-### 7.2 CountMamba
 ```shell
 cd CountMamba
 for num in 2 3 4 5
@@ -514,31 +261,8 @@ do
   python test.py --dataset Open_${num}tab --log_transform --num_tabs ${num} --seq_len 10000 --maximum_load_time 320 --max_matrix_len 7200 --load_ratio 100 --result_file test_p100
 done
 ```
-</details>
 
-![image](https://github.com/SJTU-dxw/CountMamba-WF/blob/main/img/multi_tab_result.png)
-
-
-### 7.3 Fine-grained multi-tab detection
-<details>
-  
-<summary>Code</summary>
-
-```shell
-cd DL-WF
-for method in ARES TMWF AWF DF MultiTab_RF TikTok VarCNN
-do
-  for num in 2
-  do
-    python main.py --dataset tbb_multi_tab --train_epochs 300 --config config/${method}.ini --num_tabs ${num}
-    python test.py --dataset tbb_multi_tab --config config/${method}.ini --load_ratio 100 --result_file test_p100 --num_tabs ${num}
-    
-    python main.py --dataset chrome_multi_tab --train_epochs 300 --config config/${method}.ini --num_tabs ${num}
-    python test.py --dataset chrome_multi_tab --config config/${method}.ini --load_ratio 100 --result_file test_p100 --num_tabs ${num}
-  done
-done
-```
-
+## 8. Fine-grained multi-tab detection
 ```shell
 cd CountMamba
 for num in 2
@@ -550,43 +274,3 @@ do
   python test.py --dataset chrome_multi_tab --log_transform --num_tabs ${num} --seq_len 10000 --maximum_load_time 160 --max_matrix_len 3600 --load_ratio 100 --result_file test_p100 --fine_predict
 done
 ```
-</details>
-
-![image](https://github.com/SJTU-dxw/CountMamba-WF/blob/main/img/finegrained_multitab_result.png)
-
-## 8. Ablation Study on 2-tab Dataset
-### 8.1 Maximum Trace Length
-| Maximum Trace Length | 5000  | 8000  | 10000 | 15000 | 20000 |
-| -------------------- | ----- | ----- | ----- | ----- | ----- |
-| Closed               | 84.57 | 90.42 | 91.81 | 91.64 | 91.68 |
-| Open                 | 83.06 | 88.88 | 90.17 | 90.29 | 90.19 |
-
-### 8.2 Maximum Loading Time
-| Maximum Loading Time | 160   | 240   | 320   | 480   | 640   |
-| -------------------- | ----- | ----- | ----- | ----- | ----- |
-| Closed               | 91.19 | 91.67 | 91.81 | 91.55 | 90.76 |
-| Open                 | 89.65 | 90.43 | 90.17 | 89.82 | 89.73 | 
-
-### 8.3 Time Window Length
-|  Time Window Length  |  22   |  33   |  44   |  66   |  88   |
-| -------------------- | ----- | ----- | ----- | ----- | ----- |
-| Closed               | 93.07 | 92.65 | 91.81 | 90.76 | 89.53 |
-| Open                 | 91.77 | 91.14 | 90.17 | 89.48 | 88.46 |
-
-### 8.4 Embedding Dimension
-| Embedding Dim | 32    | 64    | 128   | 256   |
-| ------------- | ----- | ----- | ----- | ----- |
-| Closed        | 80.69 | 87.51 | 90.06 | 91.81 |
-| Open          | 79.80 | 85.95 | 88.73 | 90.17 | 
-
-### 8.5 Number of Layers
-| Number of Layers | 1   | 2   | 3   | 4   |
-| ---------------- | --- | --- | --- | --- |
-| Closed           |90.01|91.22|91.81|92.03|
-| Open             |88.70|89.53|90.17|90.61|
-
-### 8.6 Drop Path Rate
-| Drop Path Rate | 0.0 | 0.1 | 0.2 | 0.4 | 0.6 | 
-| -------------- | --- | --- | --- | --- | --- |
-| Closed         |     |     |     |     |     |
-| Open           |     |     |     |     |     |
