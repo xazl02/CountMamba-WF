@@ -6,11 +6,15 @@ import pandas as pd
 from tqdm import tqdm
 
 parser = argparse.ArgumentParser(description="WFlib")
-parser.add_argument("--dataset", type=str, default="OW", help="Dataset name")
+parser.add_argument("--dataset", type=str, default="RegulaTor", help="Dataset name")
 args = parser.parse_args()
 
-in_path = os.path.join("../dataset", args.dataset)
+# in_path = os.path.join("../dataset", args.dataset)
+in_path = '/mnt/e/KDataset/DF-RegulaTor'
+
 filenames = glob.glob(in_path + "/*")
+
+
 dataset_path = os.path.join("../npz_dataset", args.dataset)
 os.makedirs(dataset_path, exist_ok=True)
 

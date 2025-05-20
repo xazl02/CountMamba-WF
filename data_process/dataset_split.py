@@ -10,7 +10,7 @@ random.seed(fix_seed)
 np.random.seed(fix_seed)
 
 parser = argparse.ArgumentParser(description="WFlib")
-parser.add_argument("--dataset", type=str, default="W_T", help="Dataset name")
+parser.add_argument("--dataset", type=str, default="Palette", help="Dataset name")
 parser.add_argument("--use_stratify", type=str, default="True", help="Whether to use stratify")
 args = parser.parse_args()
 
