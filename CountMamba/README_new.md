@@ -4,6 +4,7 @@
 
 ## test: test.py
 
+环境配置——mamba-ssm为linu版本
 ```bash
 conda create -n myenv python=3.10
 conda activate myenv
