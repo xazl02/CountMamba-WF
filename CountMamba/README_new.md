@@ -1,4 +1,4 @@
-## 提取特则：extract.py
+## 提取特征：extract.py
 
 ## train：main.py
 
