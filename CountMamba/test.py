@@ -28,7 +28,7 @@ cudnn.deterministic = True
 parser = argparse.ArgumentParser(description="WFlib")
 
 # Dataset
-parser.add_argument('--dataset', default="CW")
+parser.add_argument('--dataset', default="Palette")
 parser.add_argument("--load_ratio", type=int, default=100)
 parser.add_argument("--result_file", type=str, default="test_p100", help="File to save test results")
 parser.add_argument('--num_tabs', default=1, type=int)

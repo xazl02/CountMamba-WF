@@ -30,7 +30,7 @@ cudnn.deterministic = True
 parser = argparse.ArgumentParser(description="WFlib")
 
 # Dataset
-parser.add_argument('--dataset', default="CW")
+parser.add_argument('--dataset', default="Palette")
 
 # Training Strategy
 parser.add_argument('--early_stage', action="store_true")
@@ -41,7 +41,7 @@ parser.add_argument('--fine_predict', action="store_true")
 
 # Representation
 parser.add_argument('--seq_len', default=5000, type=int)
-parser.add_argument('--maximum_load_time', default=80, type=int)
+parser.add_argument('--maximum_load_time', default=80, type=int) 
 parser.add_argument('--max_matrix_len', default=1800, type=int)
 parser.add_argument('--time_interval_threshold', default=0.1, type=float)
 parser.add_argument('--maximum_cell_number', default=2, type=int)
